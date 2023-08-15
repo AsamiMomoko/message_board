@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "messeages")
+@NamedQueries({
+        @NamedQuery(name = "getAllMessages", query = "SELECT m FROM Message AS m ORDER BY m.id DESC")
+})
+@Table(name = "messages")
 public class Message {
 
     @Id
@@ -28,7 +33,7 @@ public class Message {
     private Timestamp created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private Timestamp updated;
+    private Timestamp updated_at;
 
     public Integer getId() {
         return id;
@@ -62,12 +67,12 @@ public class Message {
         this.created_at = created_at;
     }
 
-    public Timestamp getUpdated() {
-        return updated;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
 }
